@@ -105,9 +105,9 @@ body {
   right: 20px;
   background: #e8231d;
   color: white;
-  padding: 10px 16px;
+  padding: 16px 16px;
   border: none;
-  border-radius: 6px;
+  border-radius: 100px;
   cursor: pointer;
 }
 
