@@ -1,0 +1,176 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.logo {
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.titulo {
+  font-size: clamp(24px, 6vw, 32px);
+  font-weight: bold;
+  font-family: 'Arial Black', sans-serif;
+  margin-bottom: 10px;
+}
+
+.subtitulo {
+  font-size: clamp(20px, 5vw, 26px);
+  font-weight: bold;
+  margin: 30px 0 20px;
+  text-transform: uppercase;
+}
+
+.menu-nav {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.menu-nav button {
+  background: #e8231d;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.menu-nav button:hover {
+  background: #c11d18;
+}
+
+.pizza-box {
+  background: #d9d4d4;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.pizza-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.nome {
+  font-weight: bold;
+  width: 60%;
+}
+
+.tamanhos {
+  text-align: right;
+  font-size: 0.95rem;
+}
+
+.carrinho-controles {
+  margin-top: 10px;
+}
+
+.carrinho-controles input {
+  width: 50px;
+  padding: 4px;
+}
+
+.carrinho-controles button {
+  padding: 6px 12px;
+  background: #e8231d;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#abrirCarrinho {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #e8231d;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#painelCarrinho {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 300px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 999;
+}
+
+#painelCarrinho ul {
+  padding-left: 20px;
+  text-align: left;
+}
+
+#painelCarrinho a {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  background: green;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+#painelCarrinho button {
+  background: #999;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  margin-top: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.precos {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.valores {
+  font-weight: bold;
+}
+
+.ingredientes {
+  font-size: 0.9rem;
+  width: 60%;
+}
+
+.borda-extras ul {
+  list-style: none;
+  padding: 0;
+}
+
+.borda-extras li {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+}
