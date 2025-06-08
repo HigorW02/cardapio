@@ -1,52 +1,39 @@
 let carrinho = [];
 
-function adicionarAoCarrinho(nome) {
-    const nomeId = nome.toLowerCase().replace(/\s+/g, '-');
-    const tamanho = document.querySelector(`input[name="${nome}-tamanho"]:checked`);
-    const quantidadeInput = document.getElementById(`${nome}-quantidade`);
-    const qtd = quantidadeInput ? parseInt(quantidadeInput.value) : 1;
-
-    if (!tamanho) {
-        alert(`Selecione um tamanho para a pizza ${nome}`);
-        return;
-    }
-
-    const tamanhoValor = tamanho.value;
-
-    // Preços base (exemplo, ideal: vir do HTML ou JSON externo)
-    const precos = {
-        P: 23.99,
-        M: 28.99,
-        G: 33.99
-    };
-
-    // Verifica se a pizza tem valores específicos
-    const pizzaBox = quantidadeInput.closest('.pizza-box');
-    const valoresDiv = pizzaBox.querySelector('.valores');
-    if (valoresDiv) {
-        const valores = valoresDiv.textContent.replace(/R\$/g, '').split('|').map(v => parseFloat(v.trim()));
-        if (valores.length === 3) {
-            precos.P = valores[0];
-            precos.M = valores[1];
-            precos.G = valores[2];
-        }
-    }
-
-    let precoBase = precos[tamanhoValor];
-
-    // Verifica borda
-    const bordaSelecionada = document.querySelector('input[name="borda"]:checked');
-    const borda = bordaSelecionada ? bordaSelecionada.value : 'Nenhuma';
-    let valorBorda = 0;
-    if (borda === 'Chocolate') valorBorda = 12;
-    else if (borda !== 'Nenhuma') valorBorda = 10;
-
-    const precoFinal = precoBase + valorBorda;
-
-    carrinho.push({ nome, tamanho: tamanhoValor, qtd, preco: precoFinal, borda });
-    atualizarCarrinho();
+// 🔎 Função para pegar preço por tamanho
+function pegarPreco(pizzaBoxElement, tamanhoSelecionado) {
+    const valoresTexto = pizzaBoxElement.querySelector('.valores').textContent;
+    const valoresArray = valoresTexto
+        .split('|')
+        .map(v => parseFloat(v.replace('R$', '').replace(',', '.').trim()));
+    const indice = { P: 0, M: 1, G: 2 }[tamanhoSelecionado];
+    return valoresArray[indice];
 }
 
+// 🛒 Lógica do botão "Adicionar"
+document.querySelectorAll('.adicionar-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+        const pizzaBox = this.closest('.pizza-box');
+        const nome = pizzaBox.querySelector('.nome').textContent.trim();
+        const radioName = pizzaBox.querySelector('input[type=radio]').name;
+        const tamanho = pizzaBox.querySelector(`input[name="${radioName}"]:checked`).value;
+        const qtd = parseInt(pizzaBox.querySelector('.quantidade').value) || 1;
+
+        const precoBase = pegarPreco(pizzaBox, tamanho);
+
+        // Pega a borda (opcional)
+        const bordaSelecionada = document.querySelector('input[name="borda"]:checked');
+        const borda = bordaSelecionada ? bordaSelecionada.value : 'Nenhuma';
+        const valorBorda = borda === 'Chocolate' ? 12 : (borda !== 'Nenhuma' ? 10 : 0);
+
+        const precoFinal = precoBase + valorBorda;
+
+        carrinho.push({ nome, tamanho, qtd, preco: precoFinal, borda });
+        atualizarCarrinho();
+    });
+});
+
+// 🧾 Atualiza a visualização do carrinho
 function atualizarCarrinho() {
     const lista = document.getElementById("listaCarrinho");
     lista.innerHTML = "";
@@ -73,6 +60,7 @@ function atualizarCarrinho() {
     document.getElementById("enviarWhatsapp").href = url;
 }
 
+// 📌 Mostrar seção do cardápio
 function mostrarSecao(id) {
     document.querySelectorAll('.secao').forEach(secao => {
         secao.style.display = 'none';
@@ -80,6 +68,7 @@ function mostrarSecao(id) {
     document.getElementById(id).style.display = 'block';
 }
 
+// 📦 Abertura/fechamento do carrinho
 document.getElementById("abrirCarrinho").onclick = () => {
     document.getElementById("painelCarrinho").style.display = "block";
 };
@@ -88,6 +77,7 @@ function fecharCarrinho() {
     document.getElementById("painelCarrinho").style.display = "none";
 }
 
+// ✅ Finalizar pedido (envia para página de finalização)
 function finalizarPedido() {
     if (carrinho.length === 0) {
         alert('Seu carrinho está vazio!');
@@ -97,4 +87,3 @@ function finalizarPedido() {
     localStorage.setItem('carrinho', JSON.stringify(carrinho));
     window.location.href = 'finalizar.html';
 }
-
