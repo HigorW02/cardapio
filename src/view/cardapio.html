@@ -281,7 +281,7 @@
                 <div class="ingredientes">
                     Molho, mussarela, filé, batata frita, orégano e azeitona.
                 </div>
-                 <div class="carrinho-controles">
+                <div class="carrinho-controles">
                     <input type="number" class="quantidade" value="1" min="1">
                     <button class="adicionar-btn">Adicionar</button>
                 </div>
@@ -338,7 +338,7 @@
                 <div class="ingredientes">
                     Molho, mussarela, camarão, orégano e azeitona.
                 </div>
-                 <div class="carrinho-controles">
+                <div class="carrinho-controles">
                     <input type="number" class="quantidade" value="1" min="1">
                     <button class="adicionar-btn">Adicionar</button>
                 </div>
@@ -641,13 +641,35 @@
         <!-- BORDAS -->
         <section id="bordas" class="secao" style="display: none;">
             <h2 class="subtitulo">Bordas Recheadas</h2>
-            <div class="borda-extras">
-                <ul>
-                    <li>Chocolate — <strong>+ R$12,00</strong></li>
-                    <li>Cheddar — <strong>+ R$10,00</strong></li>
-                    <li>Catupiry — <strong>+ R$10,00</strong></li>
-                    <li>Cream Cheese — <strong>+ R$10,00</strong></li>
-                </ul>
+            <h2>Bordas Recheadas</h2>
+            <div class="pizza-lista">
+                <div class="pizza-item">
+                    <h3>Chocolate</h3>
+                    <p>+ R$12,00</p>
+                    <input type="number" id="borda-chocolate" min="1" value="1">
+                    <button onclick="adicionarBorda('Chocolate', 12, 'borda-chocolate')">Adicionar</button>
+                </div>
+
+                <div class="pizza-item">
+                    <h3>Cheddar</h3>
+                    <p>+ R$10,00</p>
+                    <input type="number" id="borda-cheddar" min="1" value="1">
+                    <button onclick="adicionarBorda('Cheddar', 10, 'borda-cheddar')">Adicionar</button>
+                </div>
+
+                <div class="pizza-item">
+                    <h3>Catupiry</h3>
+                    <p>+ R$10,00</p>
+                    <input type="number" id="borda-catupiry" min="1" value="1">
+                    <button onclick="adicionarBorda('Catupiry', 10, 'borda-catupiry')">Adicionar</button>
+                </div>
+
+                <div class="pizza-item">
+                    <h3>Cream Cheese</h3>
+                    <p>+ R$10,00</p>
+                    <input type="number" id="borda-cream" min="1" value="1">
+                    <button onclick="adicionarBorda('Cream Cheese', 10, 'borda-cream')">Adicionar</button>
+                </div>
             </div>
         </section>
     </div>

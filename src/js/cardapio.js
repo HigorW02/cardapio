@@ -56,9 +56,16 @@ function atualizarCarrinho() {
         `${i.qtd}x ${i.nome} (${i.tamanho})${i.borda && i.borda !== 'Nenhuma' ? ` com borda ${i.borda}` : ''}`
     ).join('%0A');
 
-    const url = `https://wa.me/SEUNUMEROAQUI?text=Pedido:%0A${mensagem}%0ATotal: R$ ${total.toFixed(2)}`;
+    const url = `https://wa.me/5581987668118?text=Pedido:%0A${mensagem}%0ATotal: R$ ${total.toFixed(2)}`;
     document.getElementById("enviarWhatsapp").href = url;
 }
+
+function adicionarBorda(nome, preco, inputId) {
+    const qtd = parseInt(document.getElementById(inputId).value) || 1;
+    carrinho.push({ nome: `Borda ${nome}`, tamanho: '-', qtd, preco, borda: nome });
+    atualizarCarrinho();
+}
+
 
 // 📌 Mostrar seção do cardápio
 function mostrarSecao(id) {

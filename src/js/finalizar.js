@@ -1,47 +1,54 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.onload = () => {
   const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-  const resumo = document.getElementById('resumoPedido');
+  const resumo = document.getElementById('resumoCarrinho');
+  const totalEl = document.getElementById('resumoTotal');
   let total = 0;
 
-  if (carrinho.length === 0) {
-    resumo.innerHTML = "<p>Seu carrinho está vazio.</p>";
-    return;
-  }
-
-  const lista = document.createElement('ul');
   carrinho.forEach(item => {
-    const subtotal = item.preco * item.qtd;
+    const subtotal = item.qtd * item.preco;
     total += subtotal;
 
     const li = document.createElement('li');
-    li.textContent = `${item.qtd}x ${item.nome} (${item.tamanho})` + 
-      (item.borda && item.borda !== 'Nenhuma' ? ` c/ borda ${item.borda}` : '') +
+    li.textContent = `${item.qtd}x ${item.nome} (${item.tamanho})` +
+      (item.borda && item.borda !== 'Nenhuma' ? ` com borda ${item.borda}` : '') +
       ` - R$ ${subtotal.toFixed(2)}`;
-    lista.appendChild(li);
+    resumo.appendChild(li);
   });
 
-  resumo.appendChild(lista);
-  const pTotal = document.createElement('p');
-  pTotal.textContent = `Total: R$ ${total.toFixed(2)}`;
-  resumo.appendChild(pTotal);
+  totalEl.textContent = `Total: R$ ${total.toFixed(2)}`;
+};
 
-  document.getElementById('formFinalizar').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const nome = document.getElementById('nome').value;
-    const endereco = document.getElementById('endereco').value;
-    const obs = document.getElementById('obs').value;
+function enviarPedido(event) {
+  event.preventDefault();
 
-    const textoPedido = carrinho.map(i =>
-      `${i.qtd}x ${i.nome} (${i.tamanho})${i.borda && i.borda !== 'Nenhuma' ? ` c/ borda ${i.borda}` : ''}`
-    ).join('%0A');
+  const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+  const nome = document.getElementById('nome').value;
+  const rua = document.getElementById('rua').value;
+  const numero = document.getElementById('numero').value;
+  const complemento = document.getElementById('complemento').value;
+  const bairro = document.getElementById('bairro').value;
+  const cidade = document.getElementById('cidade').value;
 
-    const mensagem = 
-      `*PEDIDO*%0A${textoPedido}%0A*Total:* R$ ${total.toFixed(2)}%0A%0A` +
-      `*Nome:* ${nome}%0A*Endereço:* ${endereco}%0A` +
-      (obs ? `*Obs:* ${obs}` : '');
+  let mensagem = `📦 Pedido de ${nome}%0A%0A`;
+  let total = 0;
 
-    const numero = 'SEUNUMEROAQUI'; // Coloque seu número aqui, ex: 5599999999999
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
-    window.open(url, '_blank');
+  carrinho.forEach(item => {
+    const subtotal = item.qtd * item.preco;
+    total += subtotal;
+    mensagem += `• ${item.qtd}x ${item.nome} (${item.tamanho})`;
+    if (item.borda && item.borda !== 'Nenhuma') {
+      mensagem += ` c/ borda ${item.borda}`;
+    }
+    mensagem += ` - R$ ${subtotal.toFixed(2)}%0A`;
   });
-});
+
+  mensagem += `%0ATotal: R$ ${total.toFixed(2)}`;
+  mensagem += `%0A%0A📍 Endereço:%0A${rua}, ${numero}`;
+  if (complemento) mensagem += ` - ${complemento}`;
+  mensagem += `%0A${bairro} - ${cidade}`;
+
+  const numeroWhatsApp = '558187668118'; // Ex: 5581999999999
+  const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+
+  window.open(url, '_blank');
+}
