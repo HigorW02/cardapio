@@ -28,6 +28,7 @@ function enviarPedido(event) {
   const complemento = document.getElementById('complemento').value;
   const bairro = document.getElementById('bairro').value;
   const cidade = document.getElementById('cidade').value;
+  const pagamento = document.querySelector('input[name="pagamento"]:checked')?.value || 'Não informado';
 
   let mensagem = `📦 Pedido de ${nome}%0A%0A`;
   let total = 0;
@@ -46,8 +47,9 @@ function enviarPedido(event) {
   mensagem += `%0A%0A📍 Endereço:%0A${rua}, ${numero}`;
   if (complemento) mensagem += ` - ${complemento}`;
   mensagem += `%0A${bairro} - ${cidade}`;
+  mensagem += `%0A%0A💳 Pagamento: ${pagamento}`;
 
-  const numeroWhatsApp = '558187668118'; // Ex: 5581999999999
+  const numeroWhatsApp = '558197216316';
   const url = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
 
   window.open(url, '_blank');
