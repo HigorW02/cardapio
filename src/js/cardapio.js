@@ -17,23 +17,37 @@ document.querySelectorAll('.adicionar-btn').forEach(btn => {
     const nome = pizzaBox.querySelector('.nome').textContent.trim();
     const radioName = pizzaBox.querySelector('input[type=radio]').name;
     const tamanho = pizzaBox.querySelector(`input[name="${radioName}"]:checked`).value;
-    const qtd = parseInt(pizzaBox.querySelector('.quantidade').value) || 1;
+    const qtd = parseInt(pizzaBox.querySelector('.quantidade')?.value || 1);
 
-    const precoBase = pegarPreco(pizzaBox, tamanho);
-
-    // Pega a borda (opcional)
+    // Verifica borda
     const bordaSelecionada = document.querySelector('input[name="borda"]:checked');
     const borda = bordaSelecionada ? bordaSelecionada.value : 'Nenhuma';
     const valorBorda = borda === 'Chocolate' ? 12 : (borda !== 'Nenhuma' ? 10 : 0);
 
-    const precoFinal = precoBase + valorBorda;
+    // Verifica se checkbox de dois sabores está marcada
+    const doisSabores = document.getElementById("doisSabores")?.checked;
+
+    let precoFinal;
+
+    if (doisSabores) {
+      // Busca o maior preço entre todas as pizzas com o mesmo tamanho
+      let maiorPreco = 0;
+      document.querySelectorAll('.pizza-box').forEach(pizza => {
+        const preco = pegarPreco(pizza, tamanho);
+        if (preco > maiorPreco) maiorPreco = preco;
+      });
+      precoFinal = maiorPreco + valorBorda;
+    } else {
+      const precoBase = pegarPreco(pizzaBox, tamanho);
+      precoFinal = precoBase + valorBorda;
+    }
 
     carrinho.push({ nome, tamanho, qtd, preco: precoFinal, borda });
     atualizarCarrinho();
   });
 });
 
-// 🧾 Atualiza a visualização do carrinho
+// 🧾 Atualiza o carrinho
 function atualizarCarrinho() {
   const lista = document.getElementById("listaCarrinho");
   lista.innerHTML = "";
@@ -45,9 +59,13 @@ function atualizarCarrinho() {
 
     const li = document.createElement("li");
     li.innerHTML = `
-      ${item.qtd}x ${item.nome} (${item.tamanho})${item.borda && item.borda !== 'Nenhuma' ? ` c/ borda ${item.borda}` : ''} - 
-      R$ ${subtotal.toFixed(2)}
-      <button class="remover-btn" onclick="removerItem(${index})">❌</button>
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="font-size: 0.9rem;">
+          ${item.qtd}x ${item.nome} (${item.tamanho})${item.borda && item.borda !== 'Nenhuma' ? ` c/ borda ${item.borda}` : ''}
+        </span>
+        <button class="remover-btn" onclick="removerItem(${index})">❌</button>
+      </div>
+      <div style="font-weight: bold; font-size: 0.9rem;">R$ ${subtotal.toFixed(2)}</div>
     `;
     lista.appendChild(li);
   });
@@ -63,7 +81,7 @@ function atualizarCarrinho() {
   document.getElementById("enviarWhatsapp").href = url;
 }
 
-// 🗑️ Remover item do carrinho
+// 🗑️ Remover item
 function removerItem(index) {
   carrinho.splice(index, 1);
   atualizarCarrinho();
@@ -76,7 +94,7 @@ function adicionarBorda(nome, preco, inputId) {
   atualizarCarrinho();
 }
 
-// 📌 Mostrar seção do cardápio
+// 📌 Mostrar seção
 function mostrarSecao(id) {
   document.querySelectorAll('.secao').forEach(secao => {
     secao.style.display = 'none';
@@ -84,7 +102,7 @@ function mostrarSecao(id) {
   document.getElementById(id).style.display = 'block';
 }
 
-// 📦 Abertura/fechamento do carrinho
+// 📦 Carrinho
 document.getElementById("abrirCarrinho").onclick = () => {
   document.getElementById("painelCarrinho").style.display = "block";
 };
@@ -93,7 +111,7 @@ function fecharCarrinho() {
   document.getElementById("painelCarrinho").style.display = "none";
 }
 
-// ✅ Finalizar pedido (envia para página de finalização)
+// ✅ Finalizar pedido
 function finalizarPedido() {
   if (carrinho.length === 0) {
     alert('Seu carrinho está vazio!');
