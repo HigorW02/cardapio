@@ -1,3 +1,4 @@
+/* ======== BASE E ESTRUTURA ======== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -34,6 +35,7 @@ body {
   text-transform: uppercase;
 }
 
+/* ======== NAVEGAÇÃO ======== */
 .menu-nav {
   display: flex;
   gap: 10px;
@@ -57,6 +59,7 @@ body {
   background: #c11d18;
 }
 
+/* ======== PIZZAS ======== */
 .pizza-box {
   background: #d9d4d4;
   padding: 15px;
@@ -81,6 +84,17 @@ body {
   font-size: 0.95rem;
 }
 
+.ingredientes {
+  font-size: 0.9rem;
+  width: 60%;
+}
+
+.precos,
+.valores {
+  font-weight: bold;
+}
+
+/* ======== CONTROLES DE CARRINHO NAS PIZZAS ======== */
 .carrinho-controles {
   margin-top: 10px;
 }
@@ -99,18 +113,53 @@ body {
   cursor: pointer;
 }
 
+/* ======== LISTAGEM DE BORDAS ======== */
+.borda-extras ul {
+  list-style: none;
+  padding: 0;
+}
+
+.borda-extras li {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+/* ======== BOTÕES FIXOS (TOPO E VOLTAR) ======== */
 #abrirCarrinho {
   position: fixed;
   top: 20px;
   right: 20px;
   background: #e8231d;
   color: white;
-  padding: 16px 16px;
+  padding: 16px;
   border: none;
   border-radius: 100px;
   cursor: pointer;
+  z-index: 1000;
 }
 
+#botaoVoltar {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: #e8231d;
+  color: white;
+  font-size: 24px;
+  padding: 10px 12px;
+  border-radius: 50%;
+  text-decoration: none;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  transition: background 0.2s;
+}
+
+#botaoVoltar:hover {
+  background: #c51c16;
+}
+
+/* ======== PAINEL DO CARRINHO ======== */
 #painelCarrinho {
   position: fixed;
   top: 60px;
@@ -119,7 +168,7 @@ body {
   border: 1px solid #ccc;
   padding: 20px;
   width: 300px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   display: none;
   z-index: 999;
 }
@@ -150,51 +199,7 @@ body {
   cursor: pointer;
 }
 
-.precos {
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-.valores {
-  font-weight: bold;
-}
-
-.ingredientes {
-  font-size: 0.9rem;
-  width: 60%;
-}
-
-.borda-extras ul {
-  list-style: none;
-  padding: 0;
-}
-
-.borda-extras li {
-  margin-bottom: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-}
-
-#botaoVoltar {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  background: #e8231d;
-  color: white;
-  font-size: 24px;
-  padding: 10px 12px;
-  border-radius: 50%;
-  text-decoration: none;
-  text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  z-index: 1000;
-  transition: background 0.2s;
-}
-
-#botaoVoltar:hover {
-  background: #c51c16;
-}
-
+/* ======== LISTA DE PIZZAS EM GRADE ======== */
 .pizza-lista {
   display: flex;
   flex-wrap: wrap;
@@ -209,7 +214,7 @@ body {
   padding: 15px;
   width: 180px;
   text-align: center;
-  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
   flex: 1 1 180px;
   max-width: 220px;
 }
@@ -239,28 +244,51 @@ body {
   font-size: 0.9rem;
 }
 
-/* 📱 Estilo responsivo para telas menores */
+/* ======== BOTÃO DE REMOVER ITEM DO CARRINHO ======== */
+.remover-btn {
+  background: none;
+  border: none;
+  color: #b00000;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 6px;
+  margin-left: auto;
+  display: inline-block;
+  align-self: center;
+}
+
+
+/* ======== RESPONSIVO PARA CELULAR ======== */
 @media (max-width: 600px) {
-  .pizza-lista {
-    gap: 12px;
+  #painelCarrinho {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    max-height: 100%;
+    background: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 0;
+    overflow-y: auto;
   }
 
-  .pizza-item {
+  #painelCarrinho button,
+  #painelCarrinho a {
     width: 100%;
-    max-width: 100%;
-    flex: 1 1 100%;
-  }
-
-  .pizza-item h3 {
-    font-size: 1.1rem;
-  }
-
-  .pizza-item p,
-  .pizza-item button {
     font-size: 1rem;
   }
 
-  .pizza-item input {
-    width: 100%;
+  #abrirCarrinho {
+    bottom: 20px;
+    top: unset;
+    right: 20px;
+  }
+
+  #botaoVoltar {
+    bottom: 20px;
+    top: unset;
+    left: 20px;
   }
 }
