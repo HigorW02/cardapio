@@ -1,6 +1,6 @@
 let carrinho = [];
 
-// 🔎 Função para pegar preço por tamanho
+// "" Função para pegar preço por tamanho
 function pegarPreco(pizzaBoxElement, tamanhoSelecionado) {
   const valoresTexto = pizzaBoxElement.querySelector('.valores').textContent;
   const valoresArray = valoresTexto
@@ -10,7 +10,7 @@ function pegarPreco(pizzaBoxElement, tamanhoSelecionado) {
   return valoresArray[indice];
 }
 
-// 🛒 Lógica do botão "Adicionar"
+//  Lógica do botão "Adicionar"
 document.querySelectorAll('.adicionar-btn').forEach(btn => {
   btn.addEventListener('click', function () {
     const pizzaBox = this.closest('.pizza-box');
@@ -47,7 +47,7 @@ document.querySelectorAll('.adicionar-btn').forEach(btn => {
   });
 });
 
-// 🧾 Atualiza o carrinho
+//  Atualiza o carrinho
 function atualizarCarrinho() {
   const lista = document.getElementById("listaCarrinho");
   lista.innerHTML = "";
@@ -81,20 +81,20 @@ function atualizarCarrinho() {
   document.getElementById("enviarWhatsapp").href = url;
 }
 
-// 🗑️ Remover item
+//  Remover item
 function removerItem(index) {
   carrinho.splice(index, 1);
   atualizarCarrinho();
 }
 
-// ➕ Adicionar borda como item separado
+//  Adicionar borda como item separado
 function adicionarBorda(nome, preco, inputId) {
   const qtd = parseInt(document.getElementById(inputId).value) || 1;
   carrinho.push({ nome: `Borda ${nome}`, tamanho: '-', qtd, preco, borda: nome });
   atualizarCarrinho();
 }
 
-// 📌 Mostrar seção
+//  Mostrar seção
 function mostrarSecao(id) {
   document.querySelectorAll('.secao').forEach(secao => {
     secao.style.display = 'none';
@@ -102,7 +102,7 @@ function mostrarSecao(id) {
   document.getElementById(id).style.display = 'block';
 }
 
-// 📦 Carrinho
+//  Carrinho
 document.getElementById("abrirCarrinho").onclick = () => {
   document.getElementById("painelCarrinho").style.display = "block";
 };
@@ -111,7 +111,7 @@ function fecharCarrinho() {
   document.getElementById("painelCarrinho").style.display = "none";
 }
 
-// ✅ Finalizar pedido
+//  Finalizar pedido
 function finalizarPedido() {
   if (carrinho.length === 0) {
     alert('Seu carrinho está vazio!');
