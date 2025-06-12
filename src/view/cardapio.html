@@ -16,7 +16,7 @@
         <div class="menu-nav">
             <button onclick="mostrarSecao('salgadas')">Pizzas Salgadas</button>
             <button onclick="mostrarSecao('doces')">Pizzas Doces</button>
-            <button onclick="mostrarSecao('2sabores')">2 Sabores</button>
+            <button onclick="mostrarSecao('doisSabores')">2 Sabores</button>
             <button onclick="mostrarSecao('bordas')">Bordas</button>
         </div>
 
@@ -678,31 +678,108 @@
         </section>
 
         <!-- PIZZAS DOIS SABORES -->
-        <section id="2sabores" class="secao" style="display: none;">
+        <section id="doisSabores" class="secao" style="display: none;">
+            <h2>Pizzas 2 Sabores</h2>
+
+            <div class="pizza-2sabores">
+                <label>Escolha o primeiro sabor:</label>
+                <select id="sabor1">
+                    <option value="">Selecione</option>
+                    <option value="CALABRESA">Calabresa</option>
+                    <option value="MUSSARELA">Mussarela</option>
+                    <option value="FRANGO">Frango</option>
+                    <option value="PALMITO">Palmito</option>
+                    <option value="BAURU">Bauru</option>
+                    <option value="4 QUEIJOS">4 Queijos</option>
+                    <option value="FRANQUEIJO">Franqueijo</option>
+                    <option value="PORTUGUESA">Portuguesa</option>
+                    <option value="AMOSTRADINHA">Amostradinha</option>
+                    <option value="ARRETADA">Arretada</option>
+                    <option value="CABULOSA">Cabulosa</option>
+                    <option value="ENXERIDA">Enxerida</option>
+                    <option value="LASCA VÉIA">Lasca Véia</option>
+                    <option value="ABUSADA">Abusada</option>
+                    <option value="MAROMBEIRA">Marombeira</option>
+                    <option value="NEMO">Nemo</option>
+                    <option value="CAMARÃO">Camarão</option>
+                    <option value="ABESTADA">Abestada</option>
+                    <option value="BEIRA MAR">Beira Mar</option>
+                    <option value="MAFIOSA">Mafiosa</option>
+                    <option value="COICE DE MULA">Coice de Mula</option>
+                    <option value="GULOSA">Gulosa</option>
+                    <option value="RAIMUNDA">Raimunda</option>
+                    <option value="">doces</option>
+                    <option value="BOYZINHA">Boyzinha</option>
+                    <option value="ATREVIDA">Atrevida</option>
+                    <option value="SENSAÇÃO">Sensação</option>
+                    <option value="KITKERO">Kitkero</option>
+                    <option value="MIMOSA">Mimosa</option>
+                    <option value="ESPIVITADA">Espivitada</option>
+                    <option value="ALERQUINA">Alerquina</option>
+                    <option value="CACHORRO CARAMELO">Cachorro Caramelo</option>
+                    <option value="TARTARUGA NINJA">Tartaruga Ninja</option>
+                    <!-- Adicione mais sabores conforme o seu cardápio -->
+                </select>
+
+                <label>Escolha o segundo sabor:</label>
+                <select id="sabor2">
+                    <option value="">Selecione</option>
+                    <option value="CALABRESA">Calabresa</option>
+                    <option value="MUSSARELA">Mussarela</option>
+                    <option value="FRANGO">Frango</option>
+                    <option value="PALMITO">Palmito</option>
+                    <option value="BAURU">Bauru</option>
+                    <option value="4 QUEIJOS">4 Queijos</option>
+                    <option value="FRANQUEIJO">Franqueijo</option>
+                    <option value="PORTUGUESA">Portuguesa</option>
+                    <option value="AMOSTRADINHA">Amostradinha</option>
+                    <option value="ARRETADA">Arretada</option>
+                    <option value="CABULOSA">Cabulosa</option>
+                    <option value="ENXERIDA">Enxerida</option>
+                    <option value="LASCA VÉIA">Lasca Véia</option>
+                    <option value="ABUSADA">Abusada</option>
+                    <option value="MAROMBEIRA">Marombeira</option>
+                    <option value="NEMO">Nemo</option>
+                    <option value="CAMARÃO">Camarão</option>
+                    <option value="ABESTADA">Abestada</option>
+                    <option value="BEIRA MAR">Beira Mar</option>
+                    <option value="MAFIOSA">Mafiosa</option>
+                    <option value="COICE DE MULA">Coice de Mula</option>
+                    <option value="GULOSA">Gulosa</option>
+                    <option value="RAIMUNDA">Raimunda</option>
+                    <option value="">doces</option>
+                    <option value="BOYZINHA">Boyzinha</option>
+                    <option value="ATREVIDA">Atrevida</option>
+                    <option value="SENSAÇÃO">Sensação</option>
+                    <option value="KITKERO">Kitkero</option>
+                    <option value="MIMOSA">Mimosa</option>
+                    <option value="ESPIVITADA">Espivitada</option>
+                    <option value="ALERQUINA">Alerquina</option>
+                    <option value="CACHORRO CARAMELO">Cachorro Caramelo</option>
+                    <option value="TARTARUGA NINJA">Tartaruga Ninja</option>
+                    <!-- Adicione mais sabores conforme o seu cardápio -->
+                </select>
+
+                <label>Quantidade:</label>
+                <input type="number" id="qtd2sabores" value="1" min="1">
+
+                <button onclick="adicionarPizza2Sabores()">Adicionar ao Carrinho</button>
+            </div>
         </section>
     </div>
 
     <a href="../../index.html" id="botaoVoltar" title="Voltar para página inicial">⟵</a>
 
-
     <button id="abrirCarrinho">🛒</button>
-
     <div id="painelCarrinho">
         <h3>Seu Pedido</h3>
         <ul id="listaCarrinho"></ul>
         <p id="totalCarrinho"></p>
-        <div style="margin-bottom: 10px;">
-            <!-- <label>
-                <input type="checkbox" id="doisSabores">
-                Pizza dois sabores?
-            </label>
-        </div>
--->
-            <button onclick="finalizarPedido()">Finalizar Pedido</button>
-            <button onclick="fecharCarrinho()">Fechar</button>
-        </div>
-
-        <script src="../js/cardapio.js"></script>
+        <div style="margin-bottom: 10px;"></div>
+        <button onclick="finalizarPedido()">Finalizar Pedido</button>
+        <button onclick="fecharCarrinho()">Fechar</button>
+    </div>
+    <script src="../js/cardapio.js"></script>
 </body>
 
 </html>

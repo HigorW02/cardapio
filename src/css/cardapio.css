@@ -292,3 +292,43 @@ body {
     left: 20px;
   }
 }
+
+/* ======== dois sabores ======== */
+.pizza-2sabores {
+  background: #d9d4d4;
+  padding: 15px;
+  border-radius: 8px;
+  max-width: 600px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.pizza-2sabores label {
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+
+.pizza-2sabores select,
+.pizza-2sabores input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.95rem;
+}
+
+.pizza-2sabores button {
+  background: #e8231d;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.pizza-2sabores button:hover {
+  background: #c11d18;
+}

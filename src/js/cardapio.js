@@ -1,6 +1,6 @@
 let carrinho = [];
 
-// "" Função para pegar preço por tamanho
+// Função para pegar preço por tamanho
 function pegarPreco(pizzaBoxElement, tamanhoSelecionado) {
   const valoresTexto = pizzaBoxElement.querySelector('.valores').textContent;
   const valoresArray = valoresTexto
@@ -10,7 +10,7 @@ function pegarPreco(pizzaBoxElement, tamanhoSelecionado) {
   return valoresArray[indice];
 }
 
-//  Lógica do botão "Adicionar"
+// Lógica do botão "Adicionar" (pizzas normais)
 document.querySelectorAll('.adicionar-btn').forEach(btn => {
   btn.addEventListener('click', function () {
     const pizzaBox = this.closest('.pizza-box');
@@ -24,30 +24,50 @@ document.querySelectorAll('.adicionar-btn').forEach(btn => {
     const borda = bordaSelecionada ? bordaSelecionada.value : 'Nenhuma';
     const valorBorda = borda === 'Chocolate' ? 12 : (borda !== 'Nenhuma' ? 10 : 0);
 
-    // Verifica se checkbox de dois sabores está marcada
-    const doisSabores = document.getElementById("doisSabores")?.checked;
-
-    let precoFinal;
-
-    if (doisSabores) {
-      // Busca o maior preço entre todas as pizzas com o mesmo tamanho
-      let maiorPreco = 0;
-      document.querySelectorAll('.pizza-box').forEach(pizza => {
-        const preco = pegarPreco(pizza, tamanho);
-        if (preco > maiorPreco) maiorPreco = preco;
-      });
-      precoFinal = maiorPreco + valorBorda;
-    } else {
-      const precoBase = pegarPreco(pizzaBox, tamanho);
-      precoFinal = precoBase + valorBorda;
-    }
+    const precoBase = pegarPreco(pizzaBox, tamanho);
+    const precoFinal = precoBase + valorBorda;
 
     carrinho.push({ nome, tamanho, qtd, preco: precoFinal, borda });
     atualizarCarrinho();
   });
 });
 
-//  Atualiza o carrinho
+// Adiciona pizza 2 sabores ao carrinho
+function adicionarPizza2Sabores() {
+  const sabor1 = document.getElementById('sabor1').value;
+  const sabor2 = document.getElementById('sabor2').value;
+  const tamanho = 'G'; // fixo
+  const qtd = parseInt(document.getElementById('qtd2sabores').value) || 1;
+
+  if (!sabor1 || !sabor2) {
+    alert("Selecione os dois sabores.");
+    return;
+  }
+
+  if (sabor1 === sabor2) {
+    alert("Escolha dois sabores diferentes.");
+    return;
+  }
+
+  const preco1 = buscarPrecoPorNome(sabor1, tamanho);
+  const preco2 = buscarPrecoPorNome(sabor2, tamanho);
+  const maiorPreco = Math.max(preco1, preco2);
+
+  const nomeFinal = `${sabor1} / ${sabor2}`;
+  const precoFinal = maiorPreco;
+
+  carrinho.push({ nome: nomeFinal, tamanho, qtd, preco: precoFinal, borda: 'Nenhuma' });
+  atualizarCarrinho();
+}
+
+// Função auxiliar para buscar preço
+function buscarPrecoPorNome(nome, tamanho) {
+  const pizzaBox = [...document.querySelectorAll('.pizza-box')]
+    .find(p => p.querySelector('.nome')?.textContent.trim().toUpperCase() === nome.toUpperCase());
+  return pizzaBox ? pegarPreco(pizzaBox, tamanho) : 0;
+}
+
+// Atualiza o carrinho
 function atualizarCarrinho() {
   const lista = document.getElementById("listaCarrinho");
   lista.innerHTML = "";
@@ -81,20 +101,20 @@ function atualizarCarrinho() {
   document.getElementById("enviarWhatsapp").href = url;
 }
 
-//  Remover item
+// Remover item
 function removerItem(index) {
   carrinho.splice(index, 1);
   atualizarCarrinho();
 }
 
-//  Adicionar borda como item separado
+// Adicionar borda como item separado (se usado)
 function adicionarBorda(nome, preco, inputId) {
   const qtd = parseInt(document.getElementById(inputId).value) || 1;
   carrinho.push({ nome: `Borda ${nome}`, tamanho: '-', qtd, preco, borda: nome });
   atualizarCarrinho();
 }
 
-//  Mostrar seção
+// Mostrar seção
 function mostrarSecao(id) {
   document.querySelectorAll('.secao').forEach(secao => {
     secao.style.display = 'none';
@@ -102,7 +122,7 @@ function mostrarSecao(id) {
   document.getElementById(id).style.display = 'block';
 }
 
-//  Carrinho
+// Carrinho
 document.getElementById("abrirCarrinho").onclick = () => {
   document.getElementById("painelCarrinho").style.display = "block";
 };
@@ -111,7 +131,7 @@ function fecharCarrinho() {
   document.getElementById("painelCarrinho").style.display = "none";
 }
 
-//  Finalizar pedido
+// Finalizar pedido
 function finalizarPedido() {
   if (carrinho.length === 0) {
     alert('Seu carrinho está vazio!');
