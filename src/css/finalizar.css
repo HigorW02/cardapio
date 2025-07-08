@@ -70,3 +70,49 @@ button[type="submit"] {
   border-radius: 6px;
   cursor: pointer;
 }
+
+/* Estiliza o rótulo e o select */
+.formulario label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Estiliza todos os inputs e o select */
+.formulario input[type="text"],
+.formulario select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Estilo especial para o select */
+.formulario select {
+  appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%23666"><path d="M4 6l4 4 4-4z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+/* Efeito de foco */
+.formulario input[type="text"]:focus,
+.formulario select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+  outline: none;
+}
+
+/* Estilo do texto do frete */
+#freteValor {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #444;
+}
