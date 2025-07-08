@@ -332,3 +332,30 @@ body {
 .pizza-2sabores button:hover {
   background: #c11d18;
 }
+
+
+/* ======== btn add ======== */
+
+.carrinho-controles {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.carrinho-controles button {
+  background: #e8231d;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.carrinho-controles input {
+  width: 50px;
+  text-align: center;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}

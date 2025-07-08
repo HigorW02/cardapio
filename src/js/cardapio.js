@@ -141,3 +141,20 @@ function finalizarPedido() {
   localStorage.setItem('carrinho', JSON.stringify(carrinho));
   window.location.href = 'finalizar.html';
 }
+
+// add e remover
+document.querySelectorAll('.carrinho-controles').forEach(controle => {
+  const input = controle.querySelector('.quantidade');
+  const btnMais = controle.querySelector('.mais');
+  const btnMenos = controle.querySelector('.menos');
+
+  btnMais.addEventListener('click', () => {
+    input.value = parseInt(input.value) + 1;
+  });
+
+  btnMenos.addEventListener('click', () => {
+    if (parseInt(input.value) > 1) {
+      input.value = parseInt(input.value) - 1;
+    }
+  });
+});
