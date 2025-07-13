@@ -17,7 +17,14 @@ document.querySelectorAll('.adicionar-btn').forEach(btn => {
     const nome = pizzaBox.querySelector('.nome').textContent.trim();
     const radioName = pizzaBox.querySelector('input[type=radio]').name;
     const tamanho = pizzaBox.querySelector(`input[name="${radioName}"]:checked`).value;
-    const qtd = parseInt(pizzaBox.querySelector('.quantidade')?.value || 1);
+    const qtdInput = pizzaBox.querySelector('.quantidade');
+    const qtd = parseInt(qtdInput?.value || 0);
+
+    // 🚫 Validação de quantidade
+    if (isNaN(qtd) || qtd <= 0) {
+      alert("Por favor, selecione uma quantidade válida maior que zero.");
+      return;
+    }
 
     // Verifica borda
     const bordaSelecionada = document.querySelector('input[name="borda"]:checked');
@@ -46,6 +53,11 @@ function adicionarPizza2Sabores() {
 
   if (sabor1 === sabor2) {
     alert("Escolha dois sabores diferentes.");
+    return;
+  }
+
+  if (isNaN(qtd) || qtd <= 0) {
+    alert("Por favor, selecione uma quantidade válida maior que zero.");
     return;
   }
 
@@ -142,7 +154,7 @@ function finalizarPedido() {
   window.location.href = 'finalizar.html';
 }
 
-// add e remover
+// add e remover quantidade
 document.querySelectorAll('.carrinho-controles').forEach(controle => {
   const input = controle.querySelector('.quantidade');
   const btnMais = controle.querySelector('.mais');
