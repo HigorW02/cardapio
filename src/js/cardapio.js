@@ -72,7 +72,7 @@ function adicionarPizza2Sabores() {
   atualizarCarrinho();
 }
 
-// Adiciona Combo Amigos ao carrinho
+// Adiciona Combo perfeito ao carrinho
 function adicionarCombo() {
   const saborCombo = document.getElementById('saborCombo').value;
   const qtd = parseInt(document.getElementById('qtdCombo').value) || 1;
@@ -95,6 +95,37 @@ function adicionarCombo() {
     tamanho: 'G',
     qtd,
     preco: precoCombo,
+    borda: 'Nenhuma'
+  });
+
+  atualizarCarrinho();
+  alert("Combo adicionado ao carrinho!");
+}
+
+// Adiciona Combo Família ao carrinho
+function adicionarComboFamilia() {
+  const saborCombo2 = document.getElementById('saborCombo2').value;
+  const saborCombo3 = document.getElementById('saborCombo3').value;
+  const qtd = parseInt(document.getElementById('qtdCombo2').value) || 1;
+
+  if (!saborCombo2 || !saborCombo3) {
+    alert("Selecione os dois sabores para a pizza do combo.");
+    return;
+  }
+
+  if (isNaN(qtd) || qtd <= 0) {
+    alert("Por favor, selecione uma quantidade válida maior que zero.");
+    return;
+  }
+
+  const precoComboFamilia = 79.99; // preço fixo do combo família
+  const nomeFinal = `Combo Família - 2 Pizzas Grandes (${saborCombo2} e ${saborCombo3}) + Refri 2L`;
+
+  carrinho.push({
+    nome: nomeFinal,
+    tamanho: 'G',
+    qtd,
+    preco: precoComboFamilia,
     borda: 'Nenhuma'
   });
 
