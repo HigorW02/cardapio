@@ -19,6 +19,7 @@
             <button onclick="mostrarSecao('doisSabores')">2 Sabores</button>
             <button onclick="mostrarSecao('bordas')">Bordas</button>
             <button onclick="mostrarSecao('combos')">Combos</button>
+            <button onclick="mostrarSecao('bebidas')">Bebidas</button>
         </div>
 
         <!-- PIZZAS SALGADAS -->
@@ -920,29 +921,66 @@
                 <h2>COMBO FAMILIA</h2>
                 <label>3 Pizzas Grandes + 2 Refrigerantes 2L</label>
                 <p>R$109,99</p>
-                 <select id="saborCombo4">
+                <select id="saborCombo4">
                     <option value="calabresa">Calabresa</option>
                     <option value="mussarela">Mussarela</option>
                     <option value="frango">Frango</option>
                     <option value="palmito">Palmito</option>
                     <option value="bauru">Bauru</option>
-                 </select>
-                 <select id="saborCombo5">
+                </select>
+                <select id="saborCombo5">
                     <option value="calabresa">Calabresa</option>
                     <option value="mussarela">Mussarela</option>
                     <option value="frango">Frango</option>
                     <option value="palmito">Palmito</option>
                     <option value="bauru">Bauru</option>
-                 </select>
-                 <select id="saborCombo6">
+                </select>
+                <select id="saborCombo6">
                     <option value="calabresa">Calabresa</option>
                     <option value="mussarela">Mussarela</option>
                     <option value="frango">Frango</option>
                     <option value="palmito">Palmito</option>
                     <option value="bauru">Bauru</option>
-                 </select>
-                    <input type="number" id="qtdCombo3" value="1" min="1">
-                    <button onclick="adicionarComboFamilia(this)">Adicionar ao Carrinho</button>
+                </select>
+                <input type="number" id="qtdCombo3" value="1" min="1">
+                <button onclick="adicionarComboFamilia(this)">Adicionar ao Carrinho</button>
+            </div>
+        </section>
+
+        <!-- BEBIDAS -->
+        <section id="bebidas" class="secao" style="display: none;">
+            <h2>BEBIDAS</h2>
+            <div class="pizza-lista">
+                <div class="pizza-item">
+                    <h3>Coca-Cola 1.5L</h3>
+                    <p>R$12,00</p>
+                    <input type="number" id="qtdBebida1" min="1" value="1">
+                    <button onclick="adicionarBebida(this)">Adicionar</button>
+                </div>
+
+                <div class="pizza-item">
+                    <h3>Guaraná Antartica 1L</h3>
+                    <p>R$9,00</p>
+                    <input type="number" id="qtdBebida1" min="1" value="1">
+                    <button onclick="adicionarBebida(this)">Adicionar</button>
+
+                </div>
+
+                <div class="pizza-item">
+                    <h3>Guaraná Rochedo 2L</h3>
+                    <p>R$10,00</p>
+                    <input type="number" id="qtdBebida1" min="1" value="1">
+                    <button onclick="adicionarBebida(this)">Adicionar</button>
+
+                </div>
+
+                <div class="pizza-item">
+                    <h3>Guaraná Rochedo 1L</h3>
+                    <p>R$8,00</p>
+                    <input type="number" id="qtdBebida1" min="1" value="1">
+                    <button onclick="adicionarBebida(this)">Adicionar</button>
+
+                </div>
             </div>
         </section>
     </div>

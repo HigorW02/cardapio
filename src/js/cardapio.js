@@ -76,28 +76,22 @@ function adicionarPizza2Sabores() {
 function adicionarCombo() {
   const saborCombo = document.getElementById('saborCombo').value;
   const qtd = parseInt(document.getElementById('qtdCombo').value) || 1;
-
   if (!sabor1) {
     alert("Selecione um sabor para a pizza do combo.");
     return;
   }
-
   if (isNaN(qtd) || qtd <= 0) {
     alert("Por favor, selecione uma quantidade válida maior que zero.");
     return;
   }
-
   const precoCombo = 39.99; // preço fixo do combo
   const nomeFinal = `Combo Perfeito - Pizza Grande (${saborCombo}) + Refri 2L`;
-
   carrinho.push({
     nome: nomeFinal,
-    tamanho: 'G',
     qtd,
     preco: precoCombo,
     borda: 'Nenhuma'
   });
-
   atualizarCarrinho();
   alert("Combo adicionado ao carrinho!");
 }
@@ -160,6 +154,31 @@ function adicionarComboFamilia() {
   });
   atualizarCarrinho();
   alert("Combo adicionado ao carrinho!");
+}
+
+// Adiciona bebida ao carrinho
+function adicionarBebida(botao) {
+  const bebidaBox = botao.closest('.pizza-item'); // pega o bloco
+  const nome = bebidaBox.querySelector('h3').textContent;
+  const precoTexto = bebidaBox.querySelector('p').textContent.replace("R$", "").replace(",", ".").trim();
+  const preco = parseFloat(precoTexto);
+  const qtd = parseInt(bebidaBox.querySelector('input[type="number"]').value) || 1;
+
+  if (isNaN(qtd) || qtd <= 0) {
+    alert("Por favor, selecione uma quantidade válida maior que zero.");
+    return;
+  }
+
+  carrinho.push({
+    nome: `Bebida - ${nome}`,
+    tamanho: 'Único',
+    qtd,
+    preco,
+    borda: 'Nenhuma'
+  });
+
+  atualizarCarrinho();
+  alert(`${nome} adicionada ao carrinho!`);
 }
 
 // Função auxiliar para buscar preço
