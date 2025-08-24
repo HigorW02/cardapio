@@ -18,6 +18,7 @@
             <button onclick="mostrarSecao('doces')">Pizzas Doces</button>
             <button onclick="mostrarSecao('doisSabores')">2 Sabores</button>
             <button onclick="mostrarSecao('bordas')">Bordas</button>
+            <button onclick="mostrarSecao('combos')">Combos</button>
         </div>
 
         <!-- PIZZAS SALGADAS -->
@@ -874,6 +875,33 @@
                 <button onclick="adicionarPizza2Sabores()">Adicionar ao Carrinho</button>
             </div>
         </section>
+
+        <!-- PROMOÇÕES -->
+        <section id="combos" class="secao" style="display: none;">
+            <h2>Combos Promocionais</h2>
+            <!-- Combo 1 Pizza -->
+            <div class="pizza-combo">
+                <h2>COMBO PERFEITO</h2>
+                <label>1 Pizza Grande + 1 Refrigerante 2L</label>
+                <p>R$ 39,99</p>
+                <select class="saborCombo">
+                    <option value="calabresa">Calabresa</option>
+                    <option value="mussarela">Mussarela</option>
+                    <option value="frango">Frango</option>
+                    <option value="palmito">Palmito</option>
+                    <option value="bauru">Bauru</option>
+                </select>
+                <input type="number" class="qtdCombo" value="1" min="1">
+                <button onclick="adicionarCombo(this, 'Combo Amigos', 39.99)">Adicionar ao Carrinho</button>
+            </div>
+        </section>
+    </div>
+
+    <a href="../../index.html" id="botaoVoltar" title="Voltar para página inicial">⟵</a>
+
+    <!-- 🔥 Resumo fixo do total -->
+    <div id="resumoContainer">
+        <!-- <p id="resumoTotal" class="resumoTotal">Total: R$ 0,00</p> -->
     </div>
 
     <div>
@@ -889,8 +917,8 @@
             <button onclick="fecharCarrinho()">Fechar</button>
         </div>
     </div>
-
     <script src="../js/cardapio.js"></script>
+    \
 </body>
 
 </html>

@@ -72,6 +72,36 @@ function adicionarPizza2Sabores() {
   atualizarCarrinho();
 }
 
+// Adiciona Combo Amigos ao carrinho
+function adicionarCombo() {
+  const sabor1 = document.getElementById('saborCombo').value;
+  const qtd = parseInt(document.getElementById('qtdCombos').value) || 1;
+
+  if (!saborCombo) {
+    alert("Selecione um sabor para a pizza do combo.");
+    return;
+  }
+
+  if (isNaN(qtd) || qtd <= 0) {
+    alert("Por favor, selecione uma quantidade válida maior que zero.");
+    return;
+  }
+
+  const precoCombo = 39.99; // preço fixo do combo
+  const nomeFinal = `Combo Amigos - Pizza Grande (${sabor1}) + Refri 2L`;
+
+  carrinho.push({
+    nome: nomeFinal,
+    tamanho: 'G',
+    qtd,
+    preco: precoCombo,
+    borda: 'Nenhuma'
+  });
+
+  atualizarCarrinho();
+  alert("Combo adicionado ao carrinho!");
+}
+
 // Função auxiliar para buscar preço
 function buscarPrecoPorNome(nome, tamanho) {
   const pizzaBox = [...document.querySelectorAll('.pizza-box')]

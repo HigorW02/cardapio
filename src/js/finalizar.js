@@ -1,3 +1,9 @@
+// 🔑 Função global para calcular o subtotal do carrinho (sem frete)
+function calcularResumoCarrinho() {
+  const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
+  return carrinho.reduce((acc, item) => acc + item.qtd * item.preco, 0);
+}
+
 window.onload = () => {
   const carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
   const resumo = document.getElementById('resumoCarrinho');
@@ -15,7 +21,8 @@ window.onload = () => {
     resumo.appendChild(li);
   });
 
-  totalEl.textContent = `Total: R$ ${total.toFixed(2)}`;
+  // 🔄 Agora usa a função para mostrar o total
+  totalEl.textContent = `Total: R$ ${calcularResumoCarrinho().toFixed(2)}`;
   atualizarFrete();
 };
 
