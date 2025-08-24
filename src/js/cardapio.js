@@ -103,7 +103,7 @@ function adicionarCombo() {
 }
 
 // Adiciona Combo Família ao carrinho
-function adicionarComboFamilia() {
+function adicionarComboAmigo() {
   const saborCombo2 = document.getElementById('saborCombo2').value;
   const saborCombo3 = document.getElementById('saborCombo3').value;
   const qtd = parseInt(document.getElementById('qtdCombo2').value) || 1;
@@ -118,9 +118,39 @@ function adicionarComboFamilia() {
     return;
   }
 
-  const precoComboFamilia = 79.99; // preço fixo do combo família
-  const nomeFinal = `Combo Família - 2 Pizzas Grandes (${saborCombo2} e ${saborCombo3}) + Refri 2L`;
+  const precoComboAmigo = 79.99; // preço fixo do combo família
+  const nomeFinal = `Combo Amigo - 2 Pizzas Grandes (${saborCombo2} e ${saborCombo3}) + Refri 2L`;
 
+  carrinho.push({
+    nome: nomeFinal,
+    tamanho: 'G',
+    qtd,
+    preco: precoComboAmigo,
+    borda: 'Nenhuma'
+  });
+
+  atualizarCarrinho();
+  alert("Combo adicionado ao carrinho!");
+}
+
+// Adicionar Combo Familia ao carrinho
+function adicionarComboFamilia() {
+  const saborCombo4 = document.getElementById('saborCombo4').value;
+  const saborCombo5 = document.getElementById('saborCombo5').value;
+  const saborCombo6 = document.getElementById('saborCombo6').value;
+  const qtd = parseInt(document.getElementById('qtdCombo3').value) || 1;
+
+  if (!saborCombo4 || !saborCombo5 || !saborCombo6) {
+    alert("Selecione os três sabores para a pizza do combo.");
+    return;
+  }
+
+  if (isNaN(qtd) || qtd <= 0) {
+    alert("Por favor, selecione uma quantidade válida maior que zero.");
+    return;
+  }
+  const precoComboFamilia = 109.99; // preço fixo do combo família
+  const nomeFinal = `Combo Família - 3 Pizzas Grandes (${saborCombo4}, ${saborCombo5} e ${saborCombo6}) + Refri 2L`;
   carrinho.push({
     nome: nomeFinal,
     tamanho: 'G',
@@ -128,7 +158,6 @@ function adicionarComboFamilia() {
     preco: precoComboFamilia,
     borda: 'Nenhuma'
   });
-
   atualizarCarrinho();
   alert("Combo adicionado ao carrinho!");
 }
