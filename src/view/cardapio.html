@@ -879,21 +879,25 @@
         <!-- PROMOÇÕES -->
         <section id="combos" class="secao" style="display: none;">
             <h2>Combos Promocionais</h2>
-            <!-- Combo 1 Pizza -->
+            <!-- HTML (apenas ajuste no botão) -->
             <div class="pizza-combo">
-                <h2>COMBO PERFEITO</h2>
+                <h2>COMBO Perfeito</h2>
                 <label>1 Pizza Grande + 1 Refrigerante 2L</label>
                 <p>R$ 39,99</p>
-                <select class="saborCombo">
+
+                <select id="saborCombo">
                     <option value="calabresa">Calabresa</option>
                     <option value="mussarela">Mussarela</option>
                     <option value="frango">Frango</option>
                     <option value="palmito">Palmito</option>
                     <option value="bauru">Bauru</option>
                 </select>
-                <input type="number" class="qtdCombo" value="1" min="1">
-                <button onclick="adicionarCombo(this, 'Combo Amigos', 39.99)">Adicionar ao Carrinho</button>
+
+                <input type="number" id="qtdCombo" value="1" min="1">
+                <button onclick="adicionarCombo(this)">Adicionar ao Carrinho</button>
             </div>
+
+
         </section>
     </div>
 

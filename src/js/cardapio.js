@@ -74,10 +74,10 @@ function adicionarPizza2Sabores() {
 
 // Adiciona Combo Amigos ao carrinho
 function adicionarCombo() {
-  const sabor1 = document.getElementById('saborCombo').value;
-  const qtd = parseInt(document.getElementById('qtdCombos').value) || 1;
+  const saborCombo = document.getElementById('saborCombo').value;
+  const qtd = parseInt(document.getElementById('qtdCombo').value) || 1;
 
-  if (!saborCombo) {
+  if (!sabor1) {
     alert("Selecione um sabor para a pizza do combo.");
     return;
   }
@@ -88,7 +88,7 @@ function adicionarCombo() {
   }
 
   const precoCombo = 39.99; // preço fixo do combo
-  const nomeFinal = `Combo Amigos - Pizza Grande (${sabor1}) + Refri 2L`;
+  const nomeFinal = `Combo Perfeito - Pizza Grande (${saborCombo}) + Refri 2L`;
 
   carrinho.push({
     nome: nomeFinal,
