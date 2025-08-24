@@ -22,54 +22,65 @@
     <h2>📋 Informações para Entrega</h2>
     <form id="formFinalizacao" onsubmit="enviarPedido(event)">
       <label>Nome: <input type="text" id="nome" required></label>
-      <label>Rua: <input type="text" id="rua" required></label>
-      <label>Número da Casa: <input type="text" id="numero" required></label>
-      <label>Complemento: <input type="text" id="complemento"></label>
 
-      <label>Bairro:
-        <select id="bairroSelect" required onchange="atualizarFrete()">
-          <option value="" disabled selected>Escolha um bairro</option>
-          <option value="2">Maria Auxiliadora - R$2,00</option>
-          <option value="2">Jardim Boa Vista - R$2,00</option>
-          <option value="4">José Carlos de Oliveira - R$4,00</option>
-          <option value="4">Kennedy - R$4,00</option>
-          <option value="4">João Mota - R$4,00</option>
-          <option value="4">Caiucá - R$4,00</option>
-          <option value="4">Divinópolis - R$4,00</option>
-          <option value="4">Nova Caruaru - R$4,00</option>
-          <option value="4">Nossa Senhora das Dores - R$4,00</option>
-          <option value="5">Jardim Panorama - R$5,00</option>
-          <option value="5">São Francisco - R$5,00</option>
-          <option value="5">Vila Andorinha - R$5,00</option>
-          <option value="6">Pinheirópolis - R$6,00</option>
-          <option value="6">Centenário - R$6,00</option>
-          <option value="6">Distrito Industrial - R$6,00</option>
-          <option value="6">Maurício de Nassau - R$6,00</option>
-          <option value="6">Monte Bom Jesus - R$6,00</option>
-          <option value="6">Xique-xique - R$6,00</option>
-          <option value="6">Centro - R$6,00</option>
-          <option value="6">Agamenon Magalhães - R$6,00</option>
-          <option value="6">Petrópolis - R$6,00</option>
-          <option value="6">Vassoural - R$6,00</option>
-          <option value="7">Universitário - R$7,00</option>
-          <option value="7">Salgado - R$7,00</option>
-          <option value="7">Indianópolis - R$7,00</option>
-          <option value="7">Cedro - R$7,00</option>
-          <option value="7">São João da Escócia - R$7,00</option>
-          <option value="8">Cidade Alta - R$8,00</option>
-          <option value="8">Alto do Moura - R$8,00</option>
-          <option value="8">Cidade Jardim - R$8,00</option>
-          <option value="8">Dep. José Antônio Liberato - R$8,00</option>
-          <option value="8">Santa Rosa - R$8,00</option>
-          <option value="8">Luiz Gonzaga - R$8,00</option>
-          <option value="8">Nina Liberato - R$8,00</option>
-          <option value="10">Manoel Bezerra Lopes - R$10,00</option>
-          <option value="13">Rendeiras - R$13,00</option>
+      <!-- Opção de retirada -->
+      <div class="opcao-retirada">
+        <label>
+          <input type="checkbox" id="retirada" onchange="alternarRetirada()">Retirar na Pizzaria
+        </label>
+      </div>
 
-        </select>
-      </label>
+      <!-- 🔽 Envolvi os campos abaixo -->
+      <div id="blocoEndereco">
+        <label>Rua: <input type="text" id="rua" required></label>
+        <label>Número da Casa: <input type="text" id="numero" required></label>
+        <label>Complemento: <input type="text" id="complemento"></label>
 
-      "<label>Cidade: <input type="text" id="cidade" required></label>
+        <label>Bairro:
+          <select id="bairroSelect" required onchange="atualizarFrete()">
+            <option value="" disabled selected>Escolha um bairro</option>
+            <option value="2">Maria Auxiliadora - R$2,00</option>
+            <option value="2">Jardim Boa Vista - R$2,00</option>
+            <option value="4">José Carlos de Oliveira - R$4,00</option>
+            <option value="4">Kennedy - R$4,00</option>
+            <option value="4">João Mota - R$4,00</option>
+            <option value="4">Caiucá - R$4,00</option>
+            <option value="4">Divinópolis - R$4,00</option>
+            <option value="4">Nova Caruaru - R$4,00</option>
+            <option value="4">Nossa Senhora das Dores - R$4,00</option>
+            <option value="5">Jardim Panorama - R$5,00</option>
+            <option value="5">São Francisco - R$5,00</option>
+            <option value="5">Vila Andorinha - R$5,00</option>
+            <option value="6">Pinheirópolis - R$6,00</option>
+            <option value="6">Centenário - R$6,00</option>
+            <option value="6">Distrito Industrial - R$6,00</option>
+            <option value="6">Maurício de Nassau - R$6,00</option>
+            <option value="6">Monte Bom Jesus - R$6,00</option>
+            <option value="6">Xique-xique - R$6,00</option>
+            <option value="6">Centro - R$6,00</option>
+            <option value="6">Agamenon Magalhães - R$6,00</option>
+            <option value="6">Petrópolis - R$6,00</option>
+            <option value="6">Vassoural - R$6,00</option>
+            <option value="7">Universitário - R$7,00</option>
+            <option value="7">Salgado - R$7,00</option>
+            <option value="7">Indianópolis - R$7,00</option>
+            <option value="7">Cedro - R$7,00</option>
+            <option value="7">São João da Escócia - R$7,00</option>
+            <option value="8">Cidade Alta - R$8,00</option>
+            <option value="8">Alto do Moura - R$8,00</option>
+            <option value="8">Cidade Jardim - R$8,00</option>
+            <option value="8">Dep. José Antônio Liberato - R$8,00</option>
+            <option value="8">Santa Rosa - R$8,00</option>
+            <option value="8">Luiz Gonzaga - R$8,00</option>
+            <option value="8">Nina Liberato - R$8,00</option>
+            <option value="10">Manoel Bezerra Lopes - R$10,00</option>
+            <option value="13">Rendeiras - R$13,00</option>
+          </select>
+        </label>
+
+        <label>Cidade: <input type="text" id="cidade" required></label>
+      </div>
+      <!-- 🔼 fim do bloco de endereço -->
 
       <label>Forma de Pagamento:</label>
       <div class="pagamento-opcoes">
@@ -80,6 +91,7 @@
       </div>
 
       <p id="freteValor">Valor do Frete: R$0,00</p>
+
 
       <button type="submit">📲 Enviar Pedido via WhatsApp</button>
     </form>
