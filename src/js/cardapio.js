@@ -85,7 +85,7 @@ function adicionarCombo() {
     return;
   }
   const precoCombo = 39.99; // preço fixo do combo
-  const nomeFinal = `Combo Perfeito - Pizza Grande (${saborCombo}) + Refri 2L`;
+  const nomeFinal = `Combo Perfeito - Pizza Grande (${saborCombo}) + Refri 1L`;
   carrinho.push({
     nome: nomeFinal,
     qtd,
